@@ -1,0 +1,104 @@
+# Define the platform and the target version of iOS
+platform :ios, '14.0'
+
+# Project Target Declaration
+target 'NetflixClone' do
+  # Use frameworks instead of static libraries
+  use_frameworks!
+
+  # Pods for NetflixClone
+  pod 'Alamofire', '~> 5.4'            
+  pod 'Kingfisher', '~> 7.0'            
+  pod 'SnapKit', '~> 5.0'             
+  pod 'RealmSwift', '~> 10.0'          
+  pod 'RxSwift', '~> 6.0'               
+  pod 'RxCocoa', '~> 6.0'             
+  pod 'SDWebImage', '~> 5.0'              
+  pod 'Firebase/Core', '~> 10.0'        
+  pod 'Firebase/Firestore', '~> 10.0'    
+  pod 'Firebase/Analytics', '~> 10.0'   
+  pod 'Firebase/Auth', '~> 10.0'      
+  pod 'GoogleSignIn', '~> 6.0'          
+  pod 'FBSDKLoginKit', '~> 12.0'        
+  pod 'Lottie', '~> 3.0'               
+  pod 'SVProgressHUD', '~> 2.0'        
+  pod 'KeychainSwift', '~> 19.0'        
+  pod 'AWSCore', '~> 2.25'            
+  pod 'AWSAppSync', '~> 3.1'            
+  pod 'Apollo', '~> 0.50'              
+
+  # Development Pods
+  pod 'R.swift', '~> 5.0'                
+  pod 'FLEX', '~> 4.0'                  
+
+  # For unit testing
+  pod 'Quick', '~> 3.1'                
+  pod 'Nimble', '~> 9.2'               
+  
+  # End of the target for the main app
+end
+
+# Separate target for UI tests
+target 'NetflixCloneUITests' do
+  inherit! :search_paths
+  pod 'KIF', '~> 3.9'                 
+  pod 'Quick', '~> 3.1'
+  pod 'Nimble', '~> 9.2'
+end
+
+# Separate target for unit tests
+target 'NetflixCloneTests' do
+  inherit! :search_paths
+  pod 'Quick', '~> 3.1'
+  pod 'Nimble', '~> 9.2'
+end
+
+# Post-install hooks
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
+  end
+end
+
+# Adding CocoaPods for UI Components
+pod 'Hero', '~> 1.6'                   
+pod 'JGProgressHUD', '~> 2.0'       
+
+# Custom Networking and Analytics Pods
+pod 'AFNetworking', '~> 4.0'            
+pod 'Mixpanel', '~> 3.8'                
+
+# Video-related libraries
+pod 'VLCMediaPlayer', '~> 3.3'       
+pod 'youtube-ios-player-helper', '~> 2.0'  
+
+# For push notifications
+pod 'PushKit', '~> 1.7'
+pod 'UserNotifications', '~> 2.0'
+
+# Library for handling in-app purchases
+pod 'SwiftyStoreKit', '~> 0.16'         
+
+# Localization and UI improvement libraries
+pod 'Localize-Swift', '~> 3.2'          
+pod 'Toast-Swift', '~> 5.0'          
+
+# Cloud storage and file management
+pod 'AWSS3', '~> 2.25'                 
+
+# Version Control and App Configuration
+pod 'LaunchAtLogin', '~> 3.0'            
+
+# Dependency for QR code generation
+pod 'QRCode', '~> 5.1'                  
+
+# Additional Utilities and Tools
+pod 'ReachabilitySwift', '~> 5.0'     
+pod 'GCDWebServer', '~> 3.5'           
+pod 'SideMenu', '~> 6.0'               
+pod 'SkeletonView', '~> 1.7'            
+
+# For handling video transcoding
+pod 'MobileVLCKit', '~> 3.4'              

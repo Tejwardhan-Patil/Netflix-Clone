@@ -1,0 +1,17 @@
+# Use the official OpenJDK image as a base image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the VideoService JAR file to the container
+COPY target/VideoService.jar /app/VideoService.jar
+
+# Expose the port on which the VideoService will run
+EXPOSE 8080
+
+# Set environment variables 
+ENV SPRING_PROFILES_ACTIVE=prod
+
+# Run the VideoService JAR file
+ENTRYPOINT ["java", "-jar", "/app/VideoService.jar"]

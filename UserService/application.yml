@@ -1,0 +1,65 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/users_db
+    username: dbuser
+    password: dbpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+
+  mvc:
+    async:
+      request-timeout: 5000
+
+  profiles:
+    active: dev
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+security:
+  oauth2:
+    client:
+      registration:
+        google:
+          client-id: google-client-id
+          client-secret: google-client-secret
+          redirect-uri: "{baseUrl}/login/oauth2/code/google"
+          scope: profile, email
+      provider:
+        google:
+          issuer-uri: https://accounts.google.com
+
+jwt:
+  secret: jwt-secret-key
+  expiration: 3600000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

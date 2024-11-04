@@ -1,0 +1,213 @@
+// Root settings.gradle file for Android project
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: JCenter is at end of life
+    }
+}
+
+rootProject.name = "NetflixClone"
+include ':app'
+include ':feature-movies'
+include ':feature-tvshows'
+include ':feature-recommendations'
+include ':feature-user-profile'
+include ':feature-search'
+include ':feature-watchlist'
+include ':feature-authentication'
+include ':library-core'
+include ':library-network'
+include ':library-database'
+include ':library-utils'
+
+project(':feature-movies').projectDir = file('features/movies')
+project(':feature-tvshows').projectDir = file('features/tvshows')
+project(':feature-recommendations').projectDir = file('features/recommendations')
+project(':feature-user-profile').projectDir = file('features/user_profile')
+project(':feature-search').projectDir = file('features/search')
+project(':feature-watchlist').projectDir = file('features/watchlist')
+project(':feature-authentication').projectDir = file('features/authentication')
+project(':library-core').projectDir = file('libraries/core')
+project(':library-network').projectDir = file('libraries/network')
+project(':library-database').projectDir = file('libraries/database')
+project(':library-utils').projectDir = file('libraries/utils')
+
+// Configure Android Project Gradle Settings
+gradle.projectsLoaded {
+    println("Projects Loaded: " + gradle.rootProject.allprojects.collect { it.name })
+}
+
+gradle.beforeProject {
+    project.logger.lifecycle("Configuring project ${project.name}")
+}
+
+gradle.afterProject { project ->
+    project.logger.lifecycle("Finished configuring project ${project.name}")
+}
+
+gradle.projectsEvaluated {
+    println("Projects Evaluated: ${gradle.rootProject.allprojects.size}")
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+    if (taskGraph.hasTask(':app:assembleRelease')) {
+        println("Building Release version of the Netflix Clone app")
+    }
+}
+
+// Dynamic Features Support
+def dynamicFeatures = [
+    ":dynamic-feature-movies",
+    ":dynamic-feature-tvshows",
+    ":dynamic-feature-downloads",
+    ":dynamic-feature-watchhistory"
+]
+
+dynamicFeatures.each { feature ->
+    include(feature)
+    project(feature).projectDir = file("dynamic_features/${feature.replace(':', '')}")
+}
+
+// Configure build cache for faster builds
+buildCache {
+    local {
+        enabled = true
+        directory = file("${rootDir}/build-cache")
+        removeUnusedEntriesAfterDays = 7
+    }
+}
+
+// Configure lint options
+subprojects {
+    apply plugin: 'com.android.lint'
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+        lintConfig file("${rootDir}/lint.xml")
+    }
+}
+
+// Enable Kotlin Multiplatform support
+enableFeaturePreview('GRADLE_METADATA')
+
+// Configure common settings for all projects
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: JCenter is at end of life
+    }
+
+    // Configure dependency locking for consistent versions across the project
+    dependencyLocking {
+        lockAllConfigurations()
+    }
+
+    // Apply common plugins to all subprojects
+    subprojects {
+        apply plugin: 'kotlin'
+        apply plugin: 'kotlin-android'
+        apply plugin: 'kotlin-kapt'
+
+        tasks.withType(JavaCompile) {
+            options.encoding = 'UTF-8'
+        }
+
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
+
+        afterEvaluate {
+            if (plugins.hasPlugin("com.android.application") || plugins.hasPlugin("com.android.library")) {
+                android {
+                    compileSdkVersion 33
+                    defaultConfig {
+                        minSdkVersion 21
+                        targetSdkVersion 33
+                    }
+
+                    lintOptions {
+                        checkReleaseBuilds false
+                        abortOnError false
+                    }
+
+                    buildTypes {
+                        release {
+                            minifyEnabled false
+                            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Configure module dependencies
+project(':app') {
+    dependencies {
+        implementation project(':feature-movies')
+        implementation project(':feature-tvshows')
+        implementation project(':feature-recommendations')
+        implementation project(':feature-user-profile')
+        implementation project(':feature-search')
+        implementation project(':feature-watchlist')
+        implementation project(':feature-authentication')
+        implementation project(':library-core')
+        implementation project(':library-network')
+        implementation project(':library-database')
+        implementation project(':library-utils')
+    }
+}
+
+// Apply quality plugins for code style and analysis
+apply from: "${rootDir}/quality/quality.gradle"
+
+// Configure code quality tools for all modules
+subprojects {
+    apply plugin: 'checkstyle'
+    apply plugin: 'pmd'
+
+    checkstyle {
+        toolVersion '8.36.2'
+        configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+    }
+
+    pmd {
+        toolVersion '6.21.0'
+        ruleSets = []
+        ruleSetConfig = resources.text.fromFile("${rootDir}/config/pmd/pmd.xml")
+    }
+
+    tasks.withType(Checkstyle) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+            html.destination = file("${buildDir}/reports/checkstyle/${project.name}.html")
+        }
+    }
+
+    tasks.withType(Pmd) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+            html.destination = file("${buildDir}/reports/pmd/${project.name}.html")
+        }
+    }
+}
+
+// Enable dependency analysis plugin
+apply plugin: 'com.autonomousapps.dependency-analysis'

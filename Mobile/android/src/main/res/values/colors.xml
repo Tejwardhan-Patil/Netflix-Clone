@@ -1,0 +1,12 @@
+<resources>
+    <color name="primaryColor">#FF0000</color> <!-- Red color for primary elements -->
+    <color name="primaryDarkColor">#B20000</color> <!-- Darker shade of primary color -->
+    <color name="accentColor">#FFD700</color> <!-- Accent color in Gold -->
+    <color name="textColorPrimary">#FFFFFF</color> <!-- White color for primary text -->
+    <color name="textColorSecondary">#B0B0B0</color> <!-- Grey color for secondary text -->
+    <color name="backgroundColor">#000000</color> <!-- Black background -->
+    <color name="cardBackgroundColor">#1C1C1C</color> <!-- Slightly lighter background for cards -->
+    <color name="errorColor">#D32F2F</color> <!-- Red color for errors -->
+    <color name="successColor">#4CAF50</color> <!-- Green color for success messages -->
+    <color name="warningColor">#FF9800</color> <!-- Orange color for warnings -->
+</resources>

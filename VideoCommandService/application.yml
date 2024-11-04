@@ -1,0 +1,76 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /video-command
+
+spring:
+  application:
+    name: VideoCommandService
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/videocommanddb
+    username: video_user
+    password: securepassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+logging:
+  level:
+    root: INFO
+    com.netflixclone.videocommand: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+feign:
+  hystrix:
+    enabled: true
+
+ribbon:
+  eureka:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+# Kafka Configuration
+kafka:
+  bootstrap-servers: localhost:9092
+  consumer:
+    group-id: video-command-group
+    auto-offset-reset: earliest
+  producer:
+    retries: 3
+    acks: all
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.apache.kafka.common.serialization.StringSerializer

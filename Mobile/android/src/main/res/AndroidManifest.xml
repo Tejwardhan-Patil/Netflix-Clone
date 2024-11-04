@@ -1,0 +1,86 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.netflixclone.app">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Application metadata -->
+    <application
+        android:name=".NetflixCloneApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Login Activity -->
+        <activity
+            android:name=".activities.LoginActivity"
+            android:label="@string/login_title"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Movie Detail Activity -->
+        <activity
+            android:name=".activities.MovieDetailActivity"
+            android:label="@string/movie_detail_title"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Home Fragment -->
+        <activity
+            android:name=".fragments.HomeFragment"
+            android:label="@string/home"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Profile Fragment -->
+        <activity
+            android:name=".fragments.ProfileFragment"
+            android:label="@string/profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Browse Fragment -->
+        <activity
+            android:name=".fragments.BrowseFragment"
+            android:label="@string/browse"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Services -->
+        <service
+            android:name=".services.ApiService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name=".services.AuthService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Network Utility -->
+        <receiver android:name=".utils.NetworkUtils" android:enabled="true" />
+
+        <!-- Deep Linking for Web -->
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="http" android:host="www.website.com" />
+        </intent-filter>
+
+    </application>
+</manifest>

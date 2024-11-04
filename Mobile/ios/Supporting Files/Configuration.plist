@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>APIBaseURL</key>
+    <string>https://api.website.com</string>
+    
+    <key>APIEndpoints</key>
+    <dict>
+        <key>Login</key>
+        <string>/auth/login</string>
+        <key>FetchMovies</key>
+        <string>/movies</string>
+        <key>FetchUserProfile</key>
+        <string>/users/profile</string>
+    </dict>
+    
+    <key>AppSettings</key>
+    <dict>
+        <key>DefaultLanguage</key>
+        <string>en</string>
+        <key>EnableLogging</key>
+        <true/>
+        <key>Theme</key>
+        <string>dark</string>
+    </dict>
+    
+    <key>SecuritySettings</key>
+    <dict>
+        <key>UseSSL</key>
+        <true/>
+        <key>CertificatePinning</key>
+        <false/>
+    </dict>
+    
+    <key>AnalyticsSettings</key>
+    <dict>
+        <key>EnableAnalytics</key>
+        <true/>
+        <key>AnalyticsAPIKey</key>
+        <string>analytics-key-here</string>
+    </dict>
+</dict>
+</plist>

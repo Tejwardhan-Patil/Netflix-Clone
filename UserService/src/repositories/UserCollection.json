@@ -1,0 +1,224 @@
+{
+    "users": [
+      {
+        "userId": "001",
+        "username": "Person1",
+        "email": "person1@website.com",
+        "passwordHash": "7a8b9c123f",
+        "profile": {
+          "firstName": "Person",
+          "lastName": "One",
+          "age": 30,
+          "gender": "male",
+          "location": "New York, USA",
+          "avatarUrl": "https://website.com/avatars/person1.png"
+        },
+        "subscription": {
+          "status": "active",
+          "plan": "premium",
+          "startDate": "2024-01-15",
+          "renewalDate": "2024-01-15",
+          "paymentMethod": "credit_card",
+          "lastPaymentDate": "2024-12-15"
+        },
+        "preferences": {
+          "language": "en",
+          "preferredGenres": ["Action", "Drama", "Thriller"],
+          "watchlist": ["video123", "video456", "video789"],
+          "blockedGenres": ["Horror"],
+          "subtitlePreferences": {
+            "enabled": true,
+            "language": "en"
+          }
+        },
+        "watchHistory": [
+          {
+            "videoId": "video123",
+            "title": "The Great Adventure",
+            "watchedOn": "2024-08-10",
+            "progress": "100%",
+            "rating": 5
+          },
+          {
+            "videoId": "video456",
+            "title": "Mystery of the Unknown",
+            "watchedOn": "2024-09-12",
+            "progress": "70%",
+            "rating": null
+          }
+        ],
+        "activityLog": [
+          {
+            "action": "login",
+            "timestamp": "2024-10-01T10:23:45Z",
+            "ip": "192.168.1.10"
+          },
+          {
+            "action": "play_video",
+            "videoId": "video789",
+            "timestamp": "2024-10-02T18:45:20Z"
+          }
+        ]
+      },
+      {
+        "userId": "002",
+        "username": "Person2",
+        "email": "person2@website.com",
+        "passwordHash": "9a7b8c456g",
+        "profile": {
+          "firstName": "Person",
+          "lastName": "Two",
+          "age": 25,
+          "gender": "female",
+          "location": "London, UK",
+          "avatarUrl": "https://website.com/avatars/person2.png"
+        },
+        "subscription": {
+          "status": "inactive",
+          "plan": "basic",
+          "startDate": "2022-05-10",
+          "renewalDate": null,
+          "paymentMethod": null,
+          "lastPaymentDate": "2024-05-09"
+        },
+        "preferences": {
+          "language": "en",
+          "preferredGenres": ["Comedy", "Romance"],
+          "watchlist": ["video222", "video333"],
+          "blockedGenres": ["Documentary"],
+          "subtitlePreferences": {
+            "enabled": false,
+            "language": null
+          }
+        },
+        "watchHistory": [
+          {
+            "videoId": "video222",
+            "title": "A Laughing Matter",
+            "watchedOn": "2024-07-22",
+            "progress": "100%",
+            "rating": 4
+          }
+        ],
+        "activityLog": [
+          {
+            "action": "login",
+            "timestamp": "2024-09-30T15:32:10Z",
+            "ip": "192.168.2.20"
+          },
+          {
+            "action": "logout",
+            "timestamp": "2024-09-30T16:05:42Z"
+          }
+        ]
+      },
+      {
+        "userId": "003",
+        "username": "Person3",
+        "email": "person3@website.com",
+        "passwordHash": "1a2b3c789d",
+        "profile": {
+          "firstName": "Person",
+          "lastName": "Three",
+          "age": 35,
+          "gender": "non-binary",
+          "location": "Berlin, Germany",
+          "avatarUrl": "https://website.com/avatars/person3.png"
+        },
+        "subscription": {
+          "status": "active",
+          "plan": "standard",
+          "startDate": "2024-02-01",
+          "renewalDate": "2024-02-01",
+          "paymentMethod": "paypal",
+          "lastPaymentDate": "2024-12-01"
+        },
+        "preferences": {
+          "language": "de",
+          "preferredGenres": ["Sci-Fi", "Fantasy", "Adventure"],
+          "watchlist": ["video555", "video666"],
+          "blockedGenres": ["Reality TV"],
+          "subtitlePreferences": {
+            "enabled": true,
+            "language": "de"
+          }
+        },
+        "watchHistory": [
+          {
+            "videoId": "video555",
+            "title": "Space Chronicles",
+            "watchedOn": "2024-09-10",
+            "progress": "100%",
+            "rating": 5
+          },
+          {
+            "videoId": "video666",
+            "title": "The Fantasy Land",
+            "watchedOn": "2024-09-18",
+            "progress": "40%",
+            "rating": null
+          }
+        ],
+        "activityLog": [
+          {
+            "action": "login",
+            "timestamp": "2024-10-05T09:00:00Z",
+            "ip": "192.168.3.30"
+          },
+          {
+            "action": "watch_video",
+            "videoId": "video666",
+            "timestamp": "2024-10-05T09:30:20Z"
+          }
+        ]
+      },
+      {
+        "userId": "004",
+        "username": "Person4",
+        "email": "person4@website.com",
+        "passwordHash": "4f5g6h123z",
+        "profile": {
+          "firstName": "Person",
+          "lastName": "Four",
+          "age": 28,
+          "gender": "male",
+          "location": "Tokyo, Japan",
+          "avatarUrl": "https://website.com/avatars/person4.png"
+        },
+        "subscription": {
+          "status": "active",
+          "plan": "basic",
+          "startDate": "2024-04-12",
+          "renewalDate": "2024-04-12",
+          "paymentMethod": "debit_card",
+          "lastPaymentDate": "2024-10-12"
+        },
+        "preferences": {
+          "language": "jp",
+          "preferredGenres": ["Anime", "Action", "Comedy"],
+          "watchlist": ["video777", "video888"],
+          "blockedGenres": ["Documentary"],
+          "subtitlePreferences": {
+            "enabled": true,
+            "language": "en"
+          }
+        },
+        "watchHistory": [
+          {
+            "videoId": "video777",
+            "title": "Ninja Legends",
+            "watchedOn": "2024-10-01",
+            "progress": "50%",
+            "rating": null
+          }
+        ],
+        "activityLog": [
+          {
+            "action": "login",
+            "timestamp": "2024-10-05T08:15:45Z",
+            "ip": "192.168.4.40"
+          }
+        ]
+      }
+    ]
+  }  

@@ -1,0 +1,60 @@
+# Configuration for VideoQueryService
+
+server:
+  port: 8082
+  timeout: 30s
+
+database:
+  type: postgres
+  host: db.videoqueryservice.website.com
+  port: 5432
+  username: videoquery_user
+  password: secure_password123
+  dbname: video_query_db
+  max_connections: 20
+  min_connections: 5
+  connection_timeout: 10s
+
+logging:
+  level: INFO
+  format: json
+  file: /var/log/videoqueryservice/logs.log
+  max_size: 100MB
+  max_age: 30
+  max_backups: 5
+
+api:
+  base_path: /api/v1/videos
+  rate_limit:
+    requests_per_minute: 1000
+    burst_limit: 1200
+
+security:
+  jwt_secret: very_secure_jwt_secret_key
+  token_expiration: 3600s
+
+caching:
+  enabled: true
+  cache_expiration: 600s
+  redis:
+    host: redis.videoqueryservice.website.com
+    port: 6379
+    password: secure_redis_password
+    db: 0
+
+monitoring:
+  enabled: true
+  prometheus:
+    endpoint: /metrics
+
+third_party_services:
+  transcoding_service:
+    url: http://transcoding.videoqueryservice.website.com:8081
+  recommendation_service:
+    url: http://recommendation.videoqueryservice.website.com:8083
+
+health_check:
+  enabled: true
+  endpoint: /health
+  interval: 10s
+  timeout: 2s

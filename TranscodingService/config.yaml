@@ -1,0 +1,65 @@
+server:
+  port: 8080
+  host: 0.0.0.0
+
+transcoding:
+  formats:
+    - h264
+    - h265
+    - vp9
+  resolutions:
+    - 720p
+    - 1080p
+    - 4k
+  bitrate_range:
+    min: 1000k
+    max: 8000k
+  audio:
+    codecs:
+      - aac
+      - opus
+    channels: 2
+    sample_rate: 48000
+
+storage:
+  type: s3
+  s3:
+    bucket_name: video-uploads
+    region: us-east-1
+    access_key_id: <access_key>
+    secret_access_key: <secret_key>
+    endpoint: https://s3.amazonaws.com
+
+database:
+  type: postgres
+  postgres:
+    host: localhost
+    port: 5432
+    dbname: transcoding_db
+    user: transcoder
+    password: <db_password>
+    sslmode: disable
+
+logging:
+  level: info
+  file: /var/log/transcoding_service.log
+
+monitoring:
+  prometheus:
+    enabled: true
+    port: 9090
+
+queue:
+  type: rabbitmq
+  rabbitmq:
+    url: amqp://guest:guest@localhost:5672
+    queue_name: transcoding_jobs
+    prefetch_count: 10
+
+retry_policy:
+  max_retries: 5
+  delay_seconds: 10
+
+health_check:
+  enabled: true
+  interval_seconds: 30

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Netflix Clone</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="logout">Logout</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="browse">Browse</string>
+    <string name="movie_details">Movie Details</string>
+    <string name="watch_now">Watch Now</string>
+    <string name="recommendations">Recommendations</string>
+    <string name="no_recommendations">No recommendations available</string>
+    <string name="network_error">Network Error. Please try again later.</string>
+    <string name="loading">Loading...</string>
+    <string name="welcome_message">Welcome to Netflix Clone</string>
+</resources>
